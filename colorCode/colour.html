@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Colour Change As You Like</h1>
+    <div id="colorBox"> </div>
+    <p id="colorCode"></p>
+    <button onclick="generateNewColor()">Generate new color</button><br>
+    <button id="btn">Copy color Code</button>
+</body>
+   <style>
+    body{
+        text-align: center;
+    }
+    #colorBox{
+        height: 300px;
+        width: 250px;
+        border: 3px solid black;
+        margin: 0 auto;
+    }
+    #colorCode{
+        font-size: 20px;
+    }
+    #btn{
+        background-color: rgb(14, 132, 14);
+        color: aliceblue;
+        border: wheat;
+        padding: 10px;
+        margin-top: 70px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    #btn:hover{
+        background-color: rgb(4, 83, 7);
+    }
+   </style> 
+   <script>
+     const generateColor = ()=>{
+        const r=Math.floor(Math.random()*255);
+        const g=Math.floor(Math.random()*255);
+        const b=Math.floor(Math.random()*255);
+    
+           return `rgb(${r}, ${g}, ${b})`;
+
+     }
+    const changeColorBox = ()=>{
+          const colour=generateColor();
+          const colorBox=document.getElementById('colorBox');
+          const colorCode=document.getElementById('colorCode');
+          colorBox.style.backgroundColor=colour;
+          colorCode.innerText=colour;
+    }  
+    const copyColorCode=()=>{
+     const colorCode=document.getElementById('colorCode');
+     const inputTag=document.createElement('input');
+     document.body.appendChild(inputTag);
+     inputTag.value=colorCode.innerText;
+     inputTag.select();
+      document.execCommand('copy');<!--to copy  -->
+     document.body.removeChild(inputTag);
+     alert("color code copied");
+    }
+    document.getElementById('btn').addEventListener('click',()=>{
+        colorCode();
+    })
+   function generateNewColor(){
+
+    changeColorBox();
+   }
+
+   </script>
+
+</html>
